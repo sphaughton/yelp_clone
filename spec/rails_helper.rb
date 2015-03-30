@@ -1,9 +1,9 @@
 ENV['RAILS_ENV'] ||= 'test'
 
-require 'capybara/rails'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
+require 'capybara/rails'
 
 ActiveRecord::Migration.maintain_test_schema!
 
