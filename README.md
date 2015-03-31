@@ -1,4 +1,5 @@
-== Yelp Clone
+Yelp Clone
+==========
 
 Makers Academy week 9 project, to create a clone of [Yelp](http://www.yelp.co.uk) as an introduction to Rails, focusing especially on:
 
