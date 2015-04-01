@@ -13,9 +13,10 @@ context "user not signed in and on the homepage" do
   end
 end
 
-context "user signed in on the homepage" do 
+context "user signed in on the homepage" do
 
-  before do 
+  before do
+    Restaurant.create(name: 'KFC')
     visit('/')
     click_link('Sign up')
     fill_in('Email', with: 'test@example.com')
@@ -33,5 +34,11 @@ context "user signed in on the homepage" do
     visit('/')
     expect(page).not_to have_link('Sign in')
     expect(page).not_to have_link('Sign up')
+  end
+
+  it "can only edit/delete restaurants which they've created" do 
+    visit('/')
+    click_link('Edit KFC')
+    expect(page).to have_content 'error'
   end
 end
