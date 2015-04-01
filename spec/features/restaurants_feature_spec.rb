@@ -1,8 +1,11 @@
 require 'rails_helper'
+require 'restaurants_helper'
 
 feature 'restaurants' do
 
-  before do 
+  include RestaurantsHelper
+
+  def sign_up
     visit('/')
     click_link('Sign up')
     fill_in('Email', with: 'test@example.com')
@@ -11,8 +14,19 @@ feature 'restaurants' do
     click_button('Sign up')
   end
 
+  def create_restaurants
+    visit '/restaurants'
+    click_link 'Add a restaurant'
+    fill_in 'Name', with: 'KFC'
+    click_button 'Create Restaurant'
+  end
+
+  before do
+    sign_up
+  end
+
   context 'no restaurants have been added' do 
-    scenario 'should display a prompt to add a restaurant' do 
+    scenario 'should display a prompt to add a restaurant' do
       visit '/restaurants'
       expect(page).to have_content 'No restaurants yet'
       expect(page).to have_link 'Add a restaurant'
@@ -21,7 +35,7 @@ feature 'restaurants' do
 
   context 'restaurants have been added' do
     before do 
-      Restaurant.create(name: 'KFC')
+      create_restaurants
     end
 
     scenario 'display restaurants' do 
@@ -42,9 +56,8 @@ feature 'restaurants' do
     end
   end
 
-  context 'viewing restaurants' do 
+  context 'viewing restaurants' do
     let!(:kfc){Restaurant.create(name:'KFC')}
-
     scenario 'lets a user view a restaurant' do 
       visit '/restaurants'
       click_link 'KFC'
@@ -55,11 +68,8 @@ feature 'restaurants' do
 
   context 'editing restaurants' do 
 
-    scenario 'let a user edit a restaurant' do 
-      visit '/restaurants'
-      click_link 'Add a restaurant'
-      fill_in 'Name', with: 'KFC'
-      click_button 'Create Restaurant'
+    scenario 'let a user edit a restaurant' do
+      create_restaurants
       click_link 'Edit KFC'
       fill_in 'Name', with: 'Kentucky Fried Chicken'
       click_button 'Update Restaurant'
@@ -68,13 +78,10 @@ feature 'restaurants' do
     end
   end
 
-  context 'deleting restaurants' do 
+  context 'deleting restaurants' do
 
-    scenario 'removes a restaurant when a user clicks a delete link' do 
-      visit '/restaurants'
-      click_link 'Add a restaurant'
-      fill_in 'Name', with: 'KFC'
-      click_button 'Create Restaurant'
+    scenario 'removes a restaurant when a user clicks a delete link' do
+      create_restaurants
       click_link 'Delete KFC'
       expect(page).not_to have_content 'KFC'
       expect(page).to have_content 'Restaurant deleted successfully'
