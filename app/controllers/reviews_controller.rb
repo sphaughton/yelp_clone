@@ -22,12 +22,11 @@ class ReviewsController < ApplicationController
 
     if current_user
 
-      if @review.user_id == current_user
+      if @review.user_id == current_user.id
         @review.destroy
         flash[:notice] = 'Review deleted successfully'
         redirect_to '/restaurants'
       else
-        flash[:notice] = "You can't delete this"
         redirect_to '/restaurants'
       end
 
