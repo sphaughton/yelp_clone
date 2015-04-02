@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'restaurants_helper'
 
-feature 'restaurants' do
+feature 'Restaurants' do
 
   include RestaurantsHelper
 
