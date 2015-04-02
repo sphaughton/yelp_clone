@@ -39,4 +39,9 @@ feature 'Reviews' do
     expect(page).to have_content('You have already reviewed this restaurant')
   end
 
+  scenario 'can only be deleted by the same user that created it' do
+    click_link 'Delete so so'
+    expect(page).to have_content("You can't delete this")
+  end
+
 end
