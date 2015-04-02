@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Reviewing' do 
+feature 'Reviews' do 
 
   before do 
     visit('/')
@@ -20,15 +20,23 @@ feature 'Reviewing' do
   end
 
 
-  scenario 'allows users to leave a review using a form' do 
+  scenario 'are left by user using a form' do 
     expect(current_path).to eq '/restaurants'
     expect(page).to have_content('so so')
   end
 
-  scenario 'allows reviews to be deleted when associated restaurant is deleted' do
+  scenario 'are deleted when associated restaurant is deleted' do
     click_link 'Delete KFC'
     expect(current_path).to eq '/restaurants'
     expect(page).to_not have_content('so so')
+  end
+
+  scenario 'can only be left by a user on the same restaurant once' do
+    click_link 'Review KFC'
+    fill_in "Thoughts", with: "More thoughts"
+    select '1', from: 'Rating'
+    click_button 'Leave Review'
+    expect(page).to have_content('You have already reviewed this restaurant')
   end
 
 end
