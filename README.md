@@ -1,3 +1,6 @@
+[![Code Climate](https://codeclimate.com/github/sphaughton/yelp_clone/badges/gpa.svg)](https://codeclimate.com/github/sphaughton/yelp_clone)
+[![Test Coverage](https://codeclimate.com/github/sphaughton/yelp_clone/badges/coverage.svg)](https://codeclimate.com/github/sphaughton/yelp_clone)
+
 Yelp Clone
 ==========
 
