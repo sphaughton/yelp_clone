@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'restaurants_helper'
+require 'spec_helper'
 
 feature 'Restaurants' do
 
