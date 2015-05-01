@@ -2,22 +2,25 @@ require 'rails_helper'
 require 'spec_helper'
 
 feature 'Users' do
-
   context "not signed in and on the homepage" do 
-    it "should see a 'sign in' link and a 'sign up' link" do 
+    it "sees a 'sign in' link and a 'sign up' link" do 
       visit('/')
       expect(page).to have_link('Sign in')
       expect(page).to have_link('Sign up')
     end
 
-    it "should not see 'sign out' link" do 
+    it "does not see a 'sign out' link" do 
       visit('/')
       expect(page).not_to have_link('Sign out')
+    end
+
+    it "sees a 'sign in with facebook' link" do
+      visit('/')
+      expect(page).to have_link('Sign in with Facebook')
     end
   end
 
   context "signed in on the homepage" do
-
     before do
       Restaurant.create(name: 'KFC')
       visit('/')
@@ -28,12 +31,12 @@ feature 'Users' do
       click_button('Sign up')
     end
 
-    it "should see 'sign out' link" do 
+    it "sees a 'sign out' link" do 
       visit('/')
       expect(page).to have_link('Sign out')
     end
 
-    it "should not see a 'sign in' link and a 'sign up' link" do 
+    it "does not see 'sign in' link and a 'sign up' link" do 
       visit('/')
       expect(page).not_to have_link('Sign in')
       expect(page).not_to have_link('Sign up')
@@ -45,5 +48,4 @@ feature 'Users' do
       expect(page).to have_content("You can't edit this")
     end
   end
-
 end
