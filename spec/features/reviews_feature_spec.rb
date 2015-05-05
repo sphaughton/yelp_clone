@@ -25,6 +25,12 @@ feature 'Reviews' do
     expect(page).to have_content('so so')
   end
 
+  scenario 'are deleted when the user clicks Delete' do
+    expect(current_path).to eq '/restaurants'
+    click_link "Delete so so"
+    expect(page).to_not have_content('so so')
+  end
+
   scenario 'are deleted when associated restaurant is deleted' do
     click_link('Delete KFC')
     expect(current_path).to eq '/restaurants'
