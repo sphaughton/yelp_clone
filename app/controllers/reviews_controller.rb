@@ -24,15 +24,13 @@ class ReviewsController < ApplicationController
 
       if @review.user_id == current_user.id
         @review.destroy
-        flash[:notice] = 'Review deleted successfully'
-        redirect_to '/restaurants'
+        redirect_to restaurants_path, :notice => 'Review deleted successfully'
       else
-        redirect_to '/restaurants'
+        redirect_to restaurants_path
       end
 
     else
-      flash[:notice] = "You can't delete this"
-      redirect_to '/restaurants'
+      redirect_to restaurants_path, :notice => "You can't delete this"
     end
     
   end
