@@ -24,3 +24,12 @@ Testing
 ------
 Yelp Clone is thoroughly tested with RSpec/Capybara. You can run these tests from the command line with:
 <br>```rspec```
+
+To Do
+------
+- [ ] Version 3: Average ratings
+- [ ] Version 3: Adding endorsements
+- [ ] Version 3: Use AJAX to update endorsements in real time
+- [ ] Version 3: Refactor
+- [ ] Version 3: Add images to restaurants
+- [ ] CSS Styling
